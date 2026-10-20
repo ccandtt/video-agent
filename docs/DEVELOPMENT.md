@@ -2,13 +2,13 @@
 
 ## 处理链路
 
-工具页提交链接后，`local_jobs.py` 管理本地队列并调用 `pipeline.py`。`extract.py` 提取画面 OCR 与完整语音，`mining.py` 分段及抽取名称与事实，`menu.py` 关联菜单与图片，`render.py` 输出 HTML / Markdown。`library.py` 扫描已保存结果，`serve.py` 提供本机页面、接口和视频 Range 回看。
+Agent 的 summarize 与工具页均通过同一个本地 HTTP 服务提交链接，`local_jobs.py` 管理本地队列并调用 `pipeline.py`。`extract.py` 提取画面 OCR 与完整语音，`mining.py` 分段及抽取名称与事实，`menu.py` 关联菜单与图片，`render.py` 输出 HTML / Markdown。`library.py` 扫描已保存结果，`serve.py` 提供本机页面、接口和视频 Range 回看。
 
 `curated_notes.py` 是已整理好内容结构的渲染器，不是通用商品或课程自动总结器。公网部分在 `web/`；`cloud_worker.py` 连接云端队列，在本机计算并上传结果。
 
 ## 修改与验证
 
-1. 按 AGENTS.md 的约束在项目内操作，先阅读相关模块与测试。
+1. 按 AGENTS.md 的约束在项目内操作，先阅读相关模块与测试。开发测试依赖使用 `python -m pip install -r requirements-dev.txt`；普通安装仅使用运行依赖。
 2. 修改实际逻辑，不能把样例店名、数量或 tests/fixtures 中的答案加入处理流程。
 3. 运行 `python -m pytest tests -q`。真实样例测试需要 data 中原始数据和完整缓存；无数据时跳过。
 4. 修改公网源码时，在 web 中运行 `node scripts/test-web.mjs`、`npm run build`、`npm run validate`。源码上传到 GitHub 不会自动发布站点。

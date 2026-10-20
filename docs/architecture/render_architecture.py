@@ -115,9 +115,7 @@ rect(1420,325,440,1005,fill="#eef7f4",stroke="#d8eae3",radius=22)
 
 # Connectors, behind node labels
 arrow([(280,480),(280,575)])
-label(280,528,"网页请求",bg="#eef3fa")
-arrow([(480,410),(620,410)])
-label(550,390,"CLI")
+label(280,528,"同一 HTTP API",bg="#eef3fa")
 arrow([(480,640),(535,640),(535,452),(620,452)])
 label(550,560,"派发任务",size=15)
 arrow([(960,480),(960,515),(775,515),(775,545)])
@@ -144,8 +142,8 @@ arrow([(1840,640),(1890,640),(1890,1195),(1840,1195)],color="#719b92",dashed=Tru
 label(1640,1294,"云端历史按登录用户隔离",TEAL,"#eef7f4",17)
 
 # Local mode
-node(80,360,400,120,"本地工具页 / CLI",["HTML · CSS · JavaScript / Python"])
-node(80,575,400,130,"本地服务与任务队列",["serve.py / local_jobs.py","进度 · 任务状态持久化"])
+node(80,360,400,120,"网页 / Agent / CLI",["HTML · CSS · JavaScript / Python"])
+node(80,575,400,130,"统一服务与任务队列",["serve.py / local_jobs.py","进度 · 任务状态持久化"])
 node(80,960,400,140,"本地项目数据",["原视频 · OCR／ASR · 图文笔记","data / .cache / models"])
 node(80,1160,400,110,"笔记索引与历史管理",["分类 · 搜索 · 打开与回看"])
 

@@ -39,15 +39,17 @@ def scan(root=ROOT):
         })
     return sorted(entries, key=lambda item:item["updated_at"], reverse=True)
 
-def build():
-    entries = scan()
+def build(root=ROOT):
+    root = Path(root).resolve()
+    (root / "data").mkdir(parents=True, exist_ok=True)
+    entries = scan(root)
     data = {"videos":entries, "ready":sum(item["ready"] for item in entries)}
     template = (Path(__file__).parent / "templates/local-tool.html").read_text(encoding="utf-8")
     # Metadata may contain HTML-like text; it must never terminate a script tag.
     bootstrap = json.dumps(data, ensure_ascii=False).replace("<", "\\u003c").replace(">", "\\u003e")
-    target = ROOT / "data/index.html"
-    target.write_text(template.replace("__LIBRARY_DATA__", bootstrap), encoding="utf-8")
-    (ROOT / "data/library.json").write_text(json.dumps(data, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
+    target = root / "data/index.html"
+    target.write_text(template.replace("__LIBRARY_DATA__", bootstrap).replace("__PROJECT_PATH__", html.escape(str(root))), encoding="utf-8")
+    (root / "data/library.json").write_text(json.dumps(data, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
     print(json.dumps({"homepage":str(target),"videos":len(entries),"ready":data["ready"]},ensure_ascii=False))
     return entries
 

@@ -1,6 +1,6 @@
 # 项目约束
 
-- 项目唯一构建目录为 `E:\Workspace\video_agent`。源码、依赖、模型、下载数据、生成产物、测试临时文件与日志均只存放在此目录内。
+- 本会话开发与验证的唯一构建目录为 `E:\Workspace\video_agent`。源码、依赖、模型、下载数据、生成产物、测试临时文件与日志均只存放在此目录内。
 - 当前第一版仅实现本地中文探店视频的图文笔记；目标、场景、功能状态与后续 TODO 统一维护在根目录 `PROJECT_BRIEF.md`。
 - 不将测试视频名称、店铺数量或人工验收标注硬编码进处理逻辑。`tests/fixtures/` 仅用于独立验收，流水线不得读取。
 - 名称、菜品、价格、地点及评价需保留时间与原始识别依据；缺失信息保持缺失，不臆造地址。
@@ -44,3 +44,6 @@ $env:PYTHONIOENCODING = 'utf-8'
 - 提交前检查暂存清单；不得上传 data 运行内容、models、output、.cache、tmp、.venv、web/.env.local 或 web/.openai 本机部署配置。
 - README 负责运行入口，docs/README 是文档索引；不要把本地样例结果当成仓库已附带的文件。
 - 私有仓库不等于已开源；未得到用户要求前不擅自添加开源许可证、更改仓库可见性或发布站点。
+
+- 对外分发的本地工具使用启动器所在目录作为安装根目录，不硬编码开发机盘符；所有运行数据留在安装目录。两种入口通过 video-agent.py 调用同一服务，Skill 位于可选 skills/video-agent，不自动改全局 Agent 配置。
+- 发布包使用 scripts/build_distribution.py 的运行文件白名单；requirements.txt 只放运行依赖，开发测试依赖在 requirements-dev.txt。

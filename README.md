@@ -1,206 +1,94 @@
-# Video Agent
+# Video Agent · 本地视频图文笔记工具
 
-将视频整理为带**文字总结、关键截图和时间戳**的图文笔记，并在一个工具页管理历史结果。
+粘贴视频链接，生成带文字总结、截图和时间戳的图文笔记。**Agent 和网页共用同一套本地服务、处理队列、缓存与历史记录。**
 
-当前可自动生成的是 **哔哩哔哩中文美食探店攻略**。实现采用本地 OCR、Whisper 语音识别和时序规则，支持店铺目录、简介、推荐菜单、价格或评价、图片及视频回看。商品推荐、知识讲解已有单独整理的样例，通用自动生成仍待实现。
+当前自动生成：可匿名获取的 B 站中文美食探店视频，最长 20 分钟。商品推荐、知识讲解已有单次整理样例，通用自动生成待支持。
 
-> 当前为私有开发仓库。仓库包含源码、测试和项目文档；原视频、识别缓存、已生成笔记、模型和部署密钥只保留在本机，不随 Git 上传。
+**运行环境：Windows、Python 3.11+。**首次配置需要联网下载依赖与 Whisper small（约 483 MB）；在本机 CPU 运行，无需 GPU 或模型 API 密钥。Agent 须能在同一台电脑执行命令。
 
-## 项目概览与架构
+## 快速使用一：交给 Agent
 
-<p align="center">
-  <img src="docs/architecture/project-architecture.png" alt="Video Agent 项目概览与架构图" width="1200">
-</p>
+获取 `video-agent-agent.zip` 并解压；也可以轻量克隆源码：
 
-[查看 PNG 原图](docs/architecture/project-architecture.png) · [SVG 矢量图](docs/architecture/project-architecture.svg) · [绘图源代码](docs/architecture/render_architecture.py)
+```powershell
+git clone --depth 1 --filter=blob:none --sparse https://github.com/ccandtt/video-agent.git video-agent
+cd video-agent
+git sparse-checkout set video_agent skills
+```
 
-<details>
-<summary>结构与节点关系清单</summary>
+把这句话交给 Agent：
 
-### 结构与节点
+> 请读取本项目 skills/video-agent/SKILL.md，安装并启动 Video Agent。成功后给我网页链接、三个简短功能和使用方式。
 
-| 图中位置 | 节点 |
+首次部署成功后，Agent 会回复：
+
+> 部署成功：[打开本地工具](http://127.0.0.1:8765/)
+>
+> 1. B站探店图文笔记
+> 2. 截图与时间戳回看
+> 3. 历史分类搜索
+>
+> 使用：把视频链接发给我，或在网页中粘贴链接。
+
+以后直接把要总结的视频链接发给使用该 Skill 的 Agent。完成后会返回**本条笔记链接和统一首页**。网页提交的笔记也出现在相同历史中。
+
+`skills/` 是可选适配层，只保存 Agent 操作说明，不复制处理代码，也不自动修改全局 Agent 配置。直接指定 Agent 读取 SKILL.md 即可使用。
+
+## 快速使用二：命令行启动，网页操作
+
+获取 `video-agent-local.zip` 并解压；也可以只克隆核心源码：
+
+```powershell
+git clone --depth 1 --filter=blob:none --sparse https://github.com/ccandtt/video-agent.git video-agent
+cd video-agent
+git sparse-checkout set video_agent
+```
+
+在下载／解压后的项目目录，首次运行：
+
+```powershell
+python video-agent.py setup
+```
+
+程序安装项目内依赖、准备模型、完成 OCR／ASR／FFmpeg 自检后自动打开网页。网页中粘贴链接 → 生成探店攻略 → 查看进度和结果；下方分类、搜索和打开历史笔记。
+
+以后只需：
+
+```powershell
+python video-agent.py start
+```
+
+默认首页为 `http://127.0.0.1:8765/`；端口被占用时选择可用端口，并返回实际地址。同一个项目重复启动会复用已有服务。界面与 Agent 应以命令返回的网址为准。
+
+## 常用命令
+
+| 命令 | 用途 |
 | --- | --- |
-| 顶部：目标 | 视频理解 → 多模态信息提取 → 视觉证据关联 → 图文笔记 |
-| 顶部：用户 | 消费决策用户 · 知识学习用户 · 视频资料整理用户 |
-| 场景层 | 美食探店（自动生成）· 商品推荐与评测／知识讲解（已有单次整理样例） |
-| 入口层 | 本地工具页 · 公网工具页 · 命令行 CLI |
-| 功能层 | 视频导入 · 任务进度 · 店铺与菜单整理 · 截图与时间戳 · 笔记生成 · 分类／搜索／历史管理 |
-| 处理层 | 任务编排 · 视频下载 · 媒体解析 · 画面 OCR · 语音 ASR · 时序分段与事实抽取 · 菜单与截图关联 · 笔记渲染 |
-| 数据层 | 原视频与元数据 · OCR／ASR 缓存 · 图片与时间戳 · HTML／Markdown／JSON · 本地任务记录与笔记索引 · 云端任务与结果 |
-| 技术层 | HTML／CSS／JavaScript · Python · yt-dlp · FFmpeg／OpenCV · RapidOCR／ONNX Runtime · faster-whisper（CPU int8）· JSON |
-| 部署层 | 本地 Python 服务与 CPU 工作器 · Sites Worker · R2 存储 |
-| 版本管理 | GitHub 私有仓库 → 源码／测试／文档 |
+| `python video-agent.py setup` | 首次安装、自检并打开工具 |
+| `python video-agent.py start` | 启动或复用服务并打开首页 |
+| `python video-agent.py summarize "视频链接"` | 通过同一服务提交任务并等待笔记 |
+| `python video-agent.py status` | 查看服务与实际网址 |
+| `python video-agent.py doctor` | 检查依赖和模型文件 |
+| `python video-agent.py stop` | 停止本项目服务，保留历史 |
 
-### 节点关系清单
+Agent 使用 `--json` 读取结构化结果；部署和启动可加 `--no-browser`。已有完整环境可用 `setup --offline` 自检。进度写入 stderr，JSON 结果写入 stdout。
 
-- 用户 → 本地工具页／公网工具页／CLI。
-- 本地工具页 ↔ 本地服务 → 本地任务队列 → 处理流水线。
-- CLI → 处理流水线。
-- 公网工具页 ↔ Sites Worker API ↔ R2 任务与结果。
-- 本地云端工作器 → 轮询 Sites Worker 任务 API → 处理流水线。
-- 视频链接 → yt-dlp → 原视频与元数据；本地视频 → 处理流水线。
-- 原视频 → FFmpeg／OpenCV → 视频画面＋音轨。
-- 视频画面 → RapidOCR／ONNX Runtime → OCR 文字与时间。
-- 音轨 → faster-whisper → ASR 文本与时间。
-- OCR＋ASR → 时序分段与事实抽取 → 店铺／名称／菜品／价格／评价。
-- 店铺与事实＋源画面 → 菜单与截图关联 → 笔记渲染 → HTML／Markdown／JSON。
-- 本地处理结果 → 本地数据目录 → 笔记索引 → 本地工具页。
-- 本地云端工作器 → 上传笔记／截图／回看视频 → Sites Worker API → R2。
-- R2 结果 → Sites Worker 授权接口 → 公网工具页。
-- 截图／时间戳 → 对应原视频位置 → 视频回看。
-- GitHub 私有仓库 → 源码／测试／文档版本管理。
+## 数据与运行方式
 
-</details>
+- 所有数据保存在安装目录：`data/` 为原视频、截图与笔记，`models/` 为模型，`.cache/` 为任务状态、安装缓存与日志。
+- 新视频追加到同一历史库；相同视频复用已有结果。首页保持统一，每条笔记有独立阅读地址。
+- 关闭网页或 Agent 会话不会删除笔记；后台服务仍可运行。停止服务或关闭电脑会中断计算，再次启动后历史保留，中断任务可重新提交以复用完整缓存。
+- 工具只监听本机 `127.0.0.1`，服务运行期间本地网址才可访问；更新程序时保留数据、模型和缓存目录。
+- 本地首页与已有公网部署的数据分别保存；当前两种入口都使用本地服务，无需配置 Sites 或公网账号。
+- OCR／ASR 可能误识别，菜品和截图关联仍基于文字与时序规则；缺少的信息不补写。更完整的能力边界见项目概览。
 
-### 三段式汇报顺序
+## 精简包与开发文档
 
-1. **目标与用户**：长视频 → 图文笔记；消费决策／知识复习／资料整理；美食探店 MVP → 后续场景。
-2. **功能与数据流**：视频输入 → OCR＋ASR → 结构化抽取 → 截图关联 → 图文笔记与回看。
-3. **技术与部署**：本地 Python 处理 → 本地网页／Sites Worker＋R2 → GitHub 私有仓库版本管理。
+本地版只含运行核心；Agent 版在其上增加 `skills/video-agent/`。二者都不附带视频、模型、测试、架构图或公网部署代码。构建方式见 [分发与验收](docs/LOCAL_TOOL.md)；仓库当前的可访问权限保持原状。
 
-## 技术流程图生成
+- [项目目标与进展](PROJECT_BRIEF.md) · [数据集目录](DATASET_CATALOG.md)
+- [双入口部署与命令说明](docs/LOCAL_TOOL.md) · [开发说明](docs/DEVELOPMENT.md)
+- [项目架构与技术流程图](docs/ARCHITECTURE.md) · [通用技术流程图生成](docs/TECHNICAL_FLOW.md)
+- [测试记录](docs/TEST_REPORT.md) · [BUG 记录](docs/BUG_LOG.md) · [公网部署（进阶）](web/README.md)
 
-使用通用的配置驱动绘图模块，展示任务从输入到输出的处理链路。每一步包含 **输入、关键技术、中间产物**，支持顺序、分支、汇合及已有结果复用路径。
-
-默认配置对应 Video Agent 本地工具的真实处理链路：链接校验与任务创建 → 下载检查 → 画面 OCR → 音轨 ASR → 缓存校验与补采样 → 店铺事实抽取 → 菜单图片关联 → 验证与渲染 → 索引和阅读入口。
-
-<p align="center">
-  <img src="docs/architecture/technical-flow.png" alt="Video Agent 从视频链接生成图文笔记的技术流程图" width="1000">
-</p>
-
-[PNG 原图](docs/architecture/technical-flow.png) · [SVG 矢量图](docs/architecture/technical-flow.svg) · [步骤配置](docs/architecture/technical-flow.json) · [使用与配置说明](docs/TECHNICAL_FLOW.md)
-
-在项目目录一键重生成：
-
-```powershell
-.\.venv\Scripts\python.exe -m video_agent.technical_flow
-```
-
-其他任务可复制 [通用分支示例](docs/architecture/technical-flow.example.json)，修改步骤与关系后，通过 `--config` 和 `--output` 生成自己的图；无需修改绘图代码。流程内容由配置提供，生成器负责校验、布局与导出。
-
-## 快速使用
-
-已安装的本机项目在 `E:\Workspace\video_agent`。在 PowerShell 运行：
-
-```powershell
-Set-Location E:\Workspace\video_agent
-.\start_local_tool.ps1
-```
-
-浏览器会打开 [本地工具首页](http://127.0.0.1:8765/)：
-
-1. 粘贴哔哩哔哩 BV 视频链接，选择“探店攻略”，提交生成。
-2. 查看任务进度，完成后打开图文笔记。
-3. 在同一页分类、搜索和打开以前保存的笔记。
-
-自动生成入口当前限制为 **20 分钟以内的中文探店视频**，视频需能匿名获取。首次运行会下载语音模型并进行本地计算，耗时取决于视频长度与电脑性能。
-
-关闭网页不会删除笔记；重启后会从磁盘重新读取历史记录。停止服务会中断正在运行的计算，重提可复用完整且指纹一致的缓存。相同视频已有笔记时复用结果。
-
-```powershell
-.\stop_local_tool.ps1                 # 停止本地工具
-.\start_local_tool.ps1 -Restart       # 重启
-.\start_local_tool.ps1 -NoBrowser     # 启动但不自动打开浏览器
-```
-
-本地工具只监听 `127.0.0.1`，不需要云端账号或 API 密钥。CPU 在处理期间需要保持运行。
-
-## 首次安装
-
-已验证环境：**Windows、Python 3.11、CPU int8**。当前机器只在 `E:\Workspace\video_agent` 内构建和保存项目文件。
-
-新机器安装（已有项目请跳过克隆）：
-
-```powershell
-git clone https://github.com/ccandtt/video-agent.git E:\Workspace\video_agent
-Set-Location E:\Workspace\video_agent
-
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install --cache-dir .\.cache\pip -r requirements.txt
-.\start_local_tool.ps1
-```
-
-私有仓库需要有权限的 GitHub 账号登录。OCR 组件随依赖安装；Whisper 模型首次下载到项目的 `models/`，首次识别需要网络。FFmpeg 由 `imageio-ffmpeg` 提供，无需另装系统 FFmpeg。
-
-全新克隆没有历史笔记，生成后会自动显示。本机已有的 `data/` 不会因 Git 提交、推送或更新而自动清空。
-
-## 命令行处理
-
-原视频必须位于项目目录内。以自己放入的数据为例：
-
-```powershell
-Set-Location E:\Workspace\video_agent
-$env:PYTHONIOENCODING = 'utf-8'
-
-# 完整识别与生成：先将视频放在 data/raw/my-video/video.mp4
-.\.venv\Scripts\python.exe -m video_agent.pipeline .\data\raw\my-video\video.mp4
-
-# 只重建笔记，复用已存在的完整 OCR / ASR 缓存
-.\.venv\Scripts\python.exe -m video_agent.pipeline .\data\raw\my-video\video.mp4 --stage notes
-
-# 以前台方式运行工具，终端关闭时服务结束
-.\.venv\Scripts\python.exe -m video_agent.serve
-```
-
-可选参数：`--interval 2` 设置基础采样间隔，`--model small` 选择 Whisper 模型，`--force` 忽略缓存，`--output` 指定项目内输出目录。带时长限制的是网页入口；CLI 接受项目内本地视频，但内容抽取仍针对中文探店。
-
-CLI 直接传入任意本地视频可生成笔记；工具页历史发现依赖 `data/raw/<BV号>/video.info.json` 等来源元数据，建议通过工具页提交链接来统一管理。
-
-## 项目结构
-
-```text
-video_agent/
-├── README.md                 使用、安装与当前边界
-├── PROJECT_BRIEF.md          项目目标、场景、进展与 TODO
-├── DATASET_CATALOG.md        本地样例来源与处理状态
-├── AGENTS.md                 项目开发约束
-├── requirements.txt          已验证的 Python 依赖
-├── video_agent/              Python 处理流水线、本地工具与计算工作器
-│   └── templates/            本地工具页面模板
-├── web/                      公网版网页、Worker 和构建脚本
-├── tests/                    单元、接口和可选真实样例验收
-├── docs/                     文档索引、开发说明、验收和 BUG 记录
-├── data/                     原视频、缓存、笔记（内容不上传）
-├── models/                   本地语音模型（不上传）
-├── output/                   PDF 等导出文件（不上传）
-├── .cache/                   任务状态、下载缓存与日志（不上传）
-└── tmp/                      临时检查文件（不上传）
-```
-
-文档入口：[文档索引](docs/README.md) · [项目概览](PROJECT_BRIEF.md) · [数据集目录](DATASET_CATALOG.md) · [开发说明](docs/DEVELOPMENT.md) · [测试记录](docs/TEST_REPORT.md) · [BUG 记录](docs/BUG_LOG.md)。
-
-`DATASET_CATALOG.md` 描述这台机器上的数据资产，其中结果链接在纯源码克隆中不可用。数据不包含在仓库内；BUG 文档中已选择的前后对比图属于小型文档附件，会随仓库保存。
-
-## 公网版本
-
-已有部署入口：[Video Agent](https://video-agent-food-notes.freechick3.chatgpt.site/)。
-
-公网版使用 Sites Worker / R2 保存结果，按登录用户隔离笔记，支持生成、搜索、查看与删除。新任务仍由本地 CPU 工作器处理；电脑或工作器离线时，已有云端笔记可阅读，但无法处理新视频。
-
-公网“我的笔记”和本地历史分别保存，**本地结果不会自动同步到云端**。现有部署并非克隆仓库就能使用的独立托管环境，重新部署需要配置存储、身份验证和运行密钥，见 [web/README.md](web/README.md)。
-
-## 验证
-
-```powershell
-.\.venv\Scripts\python.exe -m pytest tests -q
-
-# 可选：公网 Worker 检查，需要 Node.js
-Set-Location web
-node scripts/test-web.mjs
-npm run build
-npm run validate
-```
-
-真实视频验收依赖本机数据和完整缓存；新克隆缺少这些数据时相关测试会跳过。检查结果及限制见 [测试记录](docs/TEST_REPORT.md)。测试通过不表示所有店名、菜品与价格均已人工核实。
-
-## 当前边界与后续方向
-
-- 名称、价格和评价依赖语音、OCR 与时序证据；可能误识别，缺少的信息不补写。
-- 未具名的小摊使用有来源的描述性名称，图片不一定是门头。
-- 目前没有接入生成式视觉模型，无法保证每道菜都能找到语义上最佳的画面。
-- 极短订单画面、完整动画 PPT 提取、通用商品和课程自动总结尚未作为稳定功能开放。
-- YouTube、小红书等平台属于后续方向，当前网页自动入口只支持哔哩哔哩。
-- 当前尚未指定开源许可证；先以私有仓库管理，后续是否公开及许可证另行确定。
-
-完整范围与计划见 [PROJECT_BRIEF.md](PROJECT_BRIEF.md)。
+已有的 start_local_tool.ps1 / stop_local_tool.ps1 保留兼容，内部调用同一个统一入口。技术流程图和公网部署属于开发维护功能，完整源码中按需获取。

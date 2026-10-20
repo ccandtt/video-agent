@@ -9,7 +9,7 @@
 <div class="generator"><form id="generate-form" class="form"><div><label for="video-url">视频链接</label><input id="video-url" name="url" type="url" placeholder="粘贴哔哩哔哩视频链接" required></div><div><label for="category">生成类别</label><select id="category"><option value="restaurant">探店攻略</option disabled>好物推荐 · 自动生成待支持</option><option disabled>知识讲解 · 自动生成待支持</option></select></div><button class="submit" id="generate-button" type="submit">生成图文笔记 ↗</button></form>
 <p class="help">当前自动生成支持 B 站中文美食探店视频，最长 20 分钟。已保存的家居好物、水晶选购和讲解笔记均可在下方浏览。</p><p class="message" id="message" aria-live="polite"></p><div id="jobs" class="jobs"></div></div>
 <section class="library"><div class="library-head"><h2>我的笔记 <span class="count" id="count"></span></h2><input id="search" type="search" aria-label="搜索已保存笔记" placeholder="搜索标题、分类或视频 ID"></div><div class="filters" id="filters" aria-label="笔记分类"></div><div class="grid" id="library"></div></section>
-<footer>笔记、视频和识别缓存保存在 E:/Workspace/video_agent。关闭本地工具会中断正在进行的处理，但不会删除已保存笔记。<br>公网账号的云端列表另行保存；当前页面展示本机文件。截图、报价和体验均需结合源视频理解。</footer>
+<footer>笔记、视频和识别缓存保存在 __PROJECT_PATH__。关闭本地工具会中断正在进行的处理，但不会删除已保存笔记。<br>公网账号的云端列表另行保存；当前页面展示本机文件。截图、报价和体验均需结合源视频理解。</footer>
 </main><script id="initial-library" type="application/json">__LIBRARY_DATA__</script><script>
 const el=id=>document.getElementById(id);let library=JSON.parse(el('initial-library').textContent).videos,activeCategory='全部',jobs=[];
 function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n}

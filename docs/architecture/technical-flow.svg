@@ -29,9 +29,9 @@
 <text x="280.0" y="188" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="central">01</text>
 <text x="318.0" y="185" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="25" font-weight="700" text-anchor="start" dominant-baseline="central">链接校验与任务创建</text>
 <text x="266.0" y="236" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">输入</text>
-<text x="266.0" y="270" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">用户粘贴的 B 站视频链接</text>
+<text x="266.0" y="270" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">用户 / Agent 提交视频链接</text>
 <text x="618.0" y="236" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">关键技术</text>
-<text x="618.0" y="270" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">URL 解析与 BV 号校验</text>
+<text x="618.0" y="270" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">统一 CLI / 本地 HTTP API</text>
 <text x="618.0" y="297" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">LocalJobs 持久化队列</text>
 <text x="970.0" y="236" fill="#25877e" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">产物</text>
 <text x="970.0" y="270" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">规范化链接 · 视频 ID</text>
@@ -134,6 +134,6 @@
 <text x="970.0" y="2305" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">笔记链接 / 截图 / 时间戳阅读</text>
 <text x="92" y="2408" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="400" text-anchor="start" dominant-baseline="central">主链路对应本地工具提交链接；当前自动笔记场景为中文美食探店。</text>
 <text x="92" y="2435" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="400" text-anchor="start" dominant-baseline="central">已有原视频及识别缓存可复用；OCR、ASR 当前顺序执行，生成笔记前校验缓存完整性与输入指纹。</text>
-<text x="92" y="2462" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="400" text-anchor="start" dominant-baseline="central">CLI 处理本地视频时省略链接任务编排；启动本地工具或重建笔记库时更新索引。</text>
+<text x="92" y="2462" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="400" text-anchor="start" dominant-baseline="central">统一 CLI summarize 与网页共用此链路；底层 pipeline 仍可单独处理本地文件。</text>
 <text x="92" y="2489" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="400" text-anchor="start" dominant-baseline="central">公网入口复用识别和生成步骤，由本机 cloud_worker 经 Sites API 将笔记、图片及回看视频上传 R2。</text>
 </svg>

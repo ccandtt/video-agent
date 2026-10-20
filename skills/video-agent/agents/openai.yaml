@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Agent"
+  short_description: "安装并使用本地视频笔记工具，统一生成探店笔记和返回网页链接"
+  default_prompt: "请使用 $video-agent 安装并启动本地视频笔记工具，然后给我打开链接和简短使用方法。"

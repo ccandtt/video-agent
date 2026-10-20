@@ -20,12 +20,8 @@
 <rect x="1420" y="325" width="440" height="1005" rx="22" fill="#eef7f4" stroke="#d8eae3" stroke-width="1.4"/>
 <polyline points="280,480 280,575" fill="none" stroke="#3768ab" stroke-width="2.5" stroke-linejoin="round"/>
 <polygon points="280.00,575.00 285.00,564.00 275.00,564.00" fill="#3768ab"/>
-<rect x="240.0" y="514" width="80.0" height="28" rx="6" fill="#eef3fa" stroke="#eef3fa" stroke-width="0.2"/>
-<text x="280" y="528" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" font-weight="400" text-anchor="middle" dominant-baseline="central">网页请求</text>
-<polyline points="480,410 620,410" fill="none" stroke="#3768ab" stroke-width="2.5" stroke-linejoin="round"/>
-<polygon points="620.00,410.00 609.00,405.00 609.00,415.00" fill="#3768ab"/>
-<rect x="530.19140625" y="376" width="39.6171875" height="28" rx="6" fill="#f6f8fc" stroke="#f6f8fc" stroke-width="0.2"/>
-<text x="550" y="390" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" font-weight="400" text-anchor="middle" dominant-baseline="central">CLI</text>
+<rect x="217.97265625" y="514" width="124.0546875" height="28" rx="6" fill="#eef3fa" stroke="#eef3fa" stroke-width="0.2"/>
+<text x="280" y="528" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="16" font-weight="400" text-anchor="middle" dominant-baseline="central">同一 HTTP API</text>
 <polyline points="480,640 535,640 535,452 620,452" fill="none" stroke="#3768ab" stroke-width="2.5" stroke-linejoin="round"/>
 <polygon points="620.00,452.00 609.00,447.00 609.00,457.00" fill="#3768ab"/>
 <rect x="512.0" y="546" width="76.0" height="28" rx="6" fill="#f6f8fc" stroke="#f6f8fc" stroke-width="0.2"/>
@@ -78,10 +74,10 @@
 <rect x="1538.5" y="1280" width="203.0" height="28" rx="6" fill="#eef7f4" stroke="#eef7f4" stroke-width="0.2"/>
 <text x="1640" y="1294" fill="#25877e" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="400" text-anchor="middle" dominant-baseline="central">云端历史按登录用户隔离</text>
 <rect x="80" y="360" width="400" height="120" rx="16" fill="#ffffff" stroke="#bbd0e7" stroke-width="1.4"/>
-<text x="280.0" y="403.0" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="central">本地工具页 / CLI</text>
+<text x="280.0" y="403.0" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="central">网页 / Agent / CLI</text>
 <text x="280.0" y="442.0" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="middle" dominant-baseline="central">HTML · CSS · JavaScript / Python</text>
 <rect x="80" y="575" width="400" height="130" rx="16" fill="#ffffff" stroke="#bbd0e7" stroke-width="1.4"/>
-<text x="280.0" y="609" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="central">本地服务与任务队列</text>
+<text x="280.0" y="609" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="central">统一服务与任务队列</text>
 <text x="280.0" y="645" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="middle" dominant-baseline="central">serve.py / local_jobs.py</text>
 <text x="280.0" y="674" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="middle" dominant-baseline="central">进度 · 任务状态持久化</text>
 <rect x="80" y="960" width="400" height="140" rx="16" fill="#ffffff" stroke="#bbd0e7" stroke-width="1.4"/>

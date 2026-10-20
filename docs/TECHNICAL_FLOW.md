@@ -15,7 +15,7 @@ Set-Location E:\Workspace\video_agent
 - [technical-flow.svg](architecture/technical-flow.svg)：包含原生文字和矢量图形的可编辑源图。
 - [technical-flow.validation.json](architecture/technical-flow.validation.json)：节点数、连接数、层数、尺寸及配置／图片哈希。
 
-默认图对应本地工具的“链接 → 探店笔记”主链路。基础 OCR 和 ASR 按当前 CLI 的实际顺序排列；完整性及 SHA256 校验后进行画面补采样。已有笔记命中时直接复用阅读入口。公网的任务编排、R2 存储关系见 [项目架构图](architecture/project-architecture.png)。
+默认图对应本地工具的“链接 → 探店笔记”主链路；Agent 和网页通过统一服务提交。基础 OCR 和 ASR 按当前 CLI 的实际顺序排列；完整性及 SHA256 校验后进行画面补采样。已有笔记命中时直接复用阅读入口。公网的任务编排、R2 存储关系见 [项目架构图](architecture/project-architecture.png)。
 
 ## 其他任务
 

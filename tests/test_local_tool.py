@@ -93,7 +93,7 @@ class LocalToolTests(unittest.TestCase):
 
     def test_http_blocks_cross_origin_and_rebinding_host(self):
         self.start_server()
-        for headers in ({"Origin":"https://evil.test"},{"Host":"evil.test"}):
+        for headers in ({"Origin":"https://evil.test"},{"Host":"evil.test"}) * 10:
             status,_=self.request("/api/jobs","POST",{"url":"https://www.bilibili.com/video/"+self.bv+"/","category":"restaurant"},headers)
             self.assertEqual(status,403)
         self.assertEqual(self.manager.list(),[])

@@ -125,6 +125,25 @@ class PreviewHandler(BaseHTTPRequestHandler):
         if not head:
             self.wfile.write(payload)
 
+    def _reject_json(self, data, status):
+        # Drain a small rejected POST before closing: unread bytes can cause a
+        # TCP reset on Windows, hiding the JSON error from the caller.
+        try:
+            length = int(self.headers.get("Content-Length", 0))
+        except ValueError:
+            length = 0
+        if 0 < length <= 8192 and not self.headers.get("Transfer-Encoding"):
+            previous_timeout = self.connection.gettimeout()
+            try:
+                self.connection.settimeout(.5)
+                self.rfile.read(length)
+            except OSError:
+                pass
+            finally:
+                self.connection.settimeout(previous_timeout)
+        self.close_connection = True
+        self._json(data, status)
+
     def _api(self, head=False):
         from .library import scan
         from .local_jobs import JobError
@@ -135,7 +154,8 @@ class PreviewHandler(BaseHTTPRequestHandler):
             return
         if self.command in ("GET","HEAD"):
             if path == "/api/health":
-                self._json({"mode":"local","online":True,"version":1,"generation_categories":["restaurant"]},head=head)
+                from .runtime import project_id
+                self._json({"app":"video-agent","mode":"local","online":True,"version":2,"project_id":project_id(manager.root),"generation_categories":["restaurant"]},head=head)
             elif path == "/api/library":
                 entries = scan(manager.root)
                 self._json({"videos":entries,"ready":sum(e["ready"] for e in entries)},head=head)
@@ -147,12 +167,10 @@ class PreviewHandler(BaseHTTPRequestHandler):
         allowed = {"127.0.0.1:"+str(self.server.server_port),"localhost:"+str(self.server.server_port)}
         origin = self.headers.get("Origin")
         if self.headers.get("Host") not in allowed or (origin and origin not in {"http://"+host for host in allowed}):
-            self.close_connection = True
-            self._json({"error":"请求来源无效"},403)
+            self._reject_json({"error":"请求来源无效"},403)
             return
         if self.headers.get("Content-Type","").split(";")[0].strip() != "application/json":
-            self.close_connection = True
-            self._json({"error":"请使用 JSON 请求"},415)
+            self._reject_json({"error":"请使用 JSON 请求"},415)
             return
         try:
             length = int(self.headers.get("Content-Length",0))
