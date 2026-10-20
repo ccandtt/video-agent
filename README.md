@@ -8,6 +8,15 @@
 
 ## 项目概览与架构
 
+<p align="center">
+  <img src="docs/architecture/project-architecture.png" alt="Video Agent 项目概览与架构图" width="1200">
+</p>
+
+[查看 PNG 原图](docs/architecture/project-architecture.png) · [SVG 矢量图](docs/architecture/project-architecture.svg) · [绘图源代码](docs/architecture/render_architecture.py)
+
+<details>
+<summary>结构与节点关系清单</summary>
+
 ### 结构与节点
 
 | 图中位置 | 节点 |
@@ -41,6 +50,8 @@
 - R2 结果 → Sites Worker 授权接口 → 公网工具页。
 - 截图／时间戳 → 对应原视频位置 → 视频回看。
 - GitHub 私有仓库 → 源码／测试／文档版本管理。
+
+</details>
 
 ### 三段式汇报顺序
 
