@@ -170,3 +170,7 @@
 - 原环境及纯源码副本的 Node 网页检查均通过；纯源码副本仅使用 hosting.example.json 构建并验证成功，不依赖本机真实部署配置或密钥。
 - 待提交文件执行已知本机运行密钥精确匹配及常见 GitHub token、私钥等模式扫描，未发现；忽略路径检查覆盖原视频、生成笔记、模型、任务记录、运行配置、PDF 与临时目录。
 - 检查结果保存在本机 .cache/github-preflight.json。GitHub 身份验证、仓库私有状态与推送结果在完成实际上传后另行登记。
+
+- 上传完成：GitHub 命令行身份验证为 ccandtt，创建 ccandtt/video-agent 私有仓库并推送 main。GitHub API 返回 private=true、visibility=private、default_branch=main；远端与本地全部 57 个文件路径及 blob SHA 一致，main 提交一致，README 内容一致。
+- 远端 data 目录只包含说明和两个 .gitkeep，占位以外的原视频与笔记均未上传；web/.env.local、本机部署配置、模型、输出与缓存不在远端树中。原 web Git 历史备份保存在项目 .cache/repository-backups。
+- 上传检查记录：本机 .cache/github-upload.json；仓库 https://github.com/ccandtt/video-agent 。本次只建立 GitHub 私有源码版本管理，未发布新网站或迁移用户笔记。

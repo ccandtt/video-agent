@@ -191,4 +191,4 @@
 - 根仓库统一管理 Python 源码、本地工具、公网源码、测试与项目文档；原 web 子仓库的 Git 元数据完整归档到本机 .cache/repository-backups。
 - README 作为安装和运行入口，docs/README 提供文档索引，docs/DEVELOPMENT 记录处理链路及开发验证方法。
 - 原视频、模型、缓存、生成笔记、导出产物、运行密钥与本机部署配置不上传；本地文件保留。数据集目录仍用于追溯本机样例。
-- 当前按私有开发仓库准备版本管理，尚未指定开源许可证；GitHub 源码提交不触发公网部署。
+- 已上传至 [ccandtt/video-agent](https://github.com/ccandtt/video-agent)，仓库可见性为 private，默认分支 main；尚未指定开源许可证。GitHub 源码提交不触发公网部署。
