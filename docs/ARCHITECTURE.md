@@ -26,7 +26,7 @@
 | 数据层 | 原视频与元数据 · OCR／ASR 缓存 · 图片与时间戳 · HTML／Markdown／JSON · 本地任务记录与笔记索引 · 云端任务与结果 |
 | 技术层 | HTML／CSS／JavaScript · Python · yt-dlp · FFmpeg／OpenCV · RapidOCR／ONNX Runtime · faster-whisper（CPU int8）· JSON |
 | 部署层 | 本地 Python 服务与 CPU 工作器 · Sites Worker · R2 存储 |
-| 版本管理 | GitHub 私有仓库 → 源码／测试／文档 |
+| 版本管理 | GitHub 源码仓库 → 源码／测试／文档 |
 
 ### 节点关系清单
 
@@ -45,7 +45,7 @@
 - 本地云端工作器 → 上传笔记／截图／回看视频 → Sites Worker API → R2。
 - R2 结果 → Sites Worker 授权接口 → 公网工具页。
 - 截图／时间戳 → 对应原视频位置 → 视频回看。
-- GitHub 私有仓库 → 源码／测试／文档版本管理。
+- GitHub 源码仓库 → 源码／测试／文档版本管理。
 
 </details>
 
@@ -53,7 +53,7 @@
 
 1. **目标与用户**：长视频 → 图文笔记；消费决策／知识复习／资料整理；美食探店 MVP → 后续场景。
 2. **功能与数据流**：视频输入 → OCR＋ASR → 结构化抽取 → 截图关联 → 图文笔记与回看。
-3. **技术与部署**：本地 Python 处理 → 本地网页／Sites Worker＋R2 → GitHub 私有仓库版本管理。
+3. **技术与部署**：本地 Python 处理 → 本地网页／Sites Worker＋R2 → GitHub 源码仓库版本管理。
 
 ## 技术流程图生成
 

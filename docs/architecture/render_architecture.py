@@ -166,7 +166,7 @@ text(960,1292,"OCR／ASR＋时序规则  ·  视觉证据保留来源与时间",
 # Footer
 rect(60,1360,950,84)
 text(85,1387,"工程管理",16,MUTED,True,"start")
-text(85,1421,"GitHub 私有仓库 → 源码 · 文档 · 测试",23,INK,anchor="start")
+text(85,1421,"GitHub 源码仓库 → 源码 · 文档 · 测试",23,INK,anchor="start")
 rect(1040,1360,820,84)
 draw.ellipse((1070*SCALE,1383*SCALE,1084*SCALE,1397*SCALE),fill=BLUE)
 parts.append(f'<circle cx="1077" cy="1390" r="7" fill="{BLUE}"/>')

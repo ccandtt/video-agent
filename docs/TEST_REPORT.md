@@ -202,3 +202,5 @@
 - 两个 ZIP 使用固定文件白名单：本地包 17 文件，Agent 包 19 文件，共同核心逐字节一致，差异为 Skill、UI 元数据及各自快速说明；未附带 .venv、models、data、tests、web、缓存或运行秘密。运行依赖与开发测试依赖分离；README 的两种快速使用、项目简介和架构关系已同步。
 - 本次验证证明安装／运行／共享历史和已验证样例的缓存续跑，不代表重新完成全部语音识别或任意视频均能准确分段。自动类别仍限 B 站中文探店、最长 20 分钟；商品与课程为已有单视频整理样例。没有更新公网发布，也没有更改仓库可见性或添加许可证。
 - 本机验收记录：.cache/entrypoints-acceptance.json、entrypoints-source-check.json；精简包与 SHA256：output/releases/。
+
+- 上传后核查：远端 main 与本地提交一致，源码工作区干净。GitHub API 返回当前仓库 visibility=public、private=false，与此前 private 的历史记录不同；本轮没有调用仓库可见性修改接口，按照用户要求保持当前设置。
