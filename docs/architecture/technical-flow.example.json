@@ -1,0 +1,81 @@
+{
+  "title": "通用示例｜CSV 清洗与质量检查",
+  "subtitle": "同一绘图模块：输入、并行信息分支、汇合与输出",
+  "nodes": [
+    {
+      "id": "load",
+      "title": "读取原始数据",
+      "inputs": [
+        "raw.csv"
+      ],
+      "technology": [
+        "Python / CSV"
+      ],
+      "outputs": [
+        "原始数据表"
+      ]
+    },
+    {
+      "id": "clean",
+      "title": "字段清洗",
+      "inputs": [
+        "原始数据表"
+      ],
+      "technology": [
+        "空值处理 · 格式统一"
+      ],
+      "outputs": [
+        "清洗后的数据表"
+      ]
+    },
+    {
+      "id": "check",
+      "title": "质量检查",
+      "inputs": [
+        "原始数据表"
+      ],
+      "technology": [
+        "缺失率 · 重复值检查"
+      ],
+      "outputs": [
+        "质量检查记录"
+      ]
+    },
+    {
+      "id": "report",
+      "title": "导出结果",
+      "inputs": [
+        "清洗表 · 检查记录"
+      ],
+      "technology": [
+        "CSV / JSON 导出"
+      ],
+      "outputs": [
+        "clean.csv · quality.json"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "load",
+      "to": "clean",
+      "label": "清洗分支"
+    },
+    {
+      "from": "load",
+      "to": "check",
+      "label": "检查分支"
+    },
+    {
+      "from": "clean",
+      "to": "report"
+    },
+    {
+      "from": "check",
+      "to": "report"
+    }
+  ],
+  "notes": [
+    "该配置仅演示绘图结构，不执行 CSV 数据处理。"
+  ]
+}

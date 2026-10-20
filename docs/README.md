@@ -5,6 +5,7 @@
 | [README](../README.md) | 安装、使用、启动和当前边界 |
 | [PROJECT_BRIEF](../PROJECT_BRIEF.md) | 项目目标、场景、进展与 TODO |
 | [DATASET_CATALOG](../DATASET_CATALOG.md) | 本地样例来源、分类、数据位置和产物 |
+| [TECHNICAL_FLOW](TECHNICAL_FLOW.md) | 通用技术流程图生成、步骤配置与 PNG／SVG 导出 |
 | [DEVELOPMENT](DEVELOPMENT.md) | 模块职责、开发验证与仓库管理 |
 | [TEST_REPORT](TEST_REPORT.md) | 各次验证的范围、结果与限制 |
 | [BUG_LOG](BUG_LOG.md) | 用户要求记录的问题、原因与修复对比 |

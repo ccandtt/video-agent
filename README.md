@@ -59,6 +59,26 @@
 2. **功能与数据流**：视频输入 → OCR＋ASR → 结构化抽取 → 截图关联 → 图文笔记与回看。
 3. **技术与部署**：本地 Python 处理 → 本地网页／Sites Worker＋R2 → GitHub 私有仓库版本管理。
 
+## 技术流程图生成
+
+使用通用的配置驱动绘图模块，展示任务从输入到输出的处理链路。每一步包含 **输入、关键技术、中间产物**，支持顺序、分支、汇合及已有结果复用路径。
+
+默认配置对应 Video Agent 本地工具的真实处理链路：链接校验与任务创建 → 下载检查 → 画面 OCR → 音轨 ASR → 缓存校验与补采样 → 店铺事实抽取 → 菜单图片关联 → 验证与渲染 → 索引和阅读入口。
+
+<p align="center">
+  <img src="docs/architecture/technical-flow.png" alt="Video Agent 从视频链接生成图文笔记的技术流程图" width="1000">
+</p>
+
+[PNG 原图](docs/architecture/technical-flow.png) · [SVG 矢量图](docs/architecture/technical-flow.svg) · [步骤配置](docs/architecture/technical-flow.json) · [使用与配置说明](docs/TECHNICAL_FLOW.md)
+
+在项目目录一键重生成：
+
+```powershell
+.\.venv\Scripts\python.exe -m video_agent.technical_flow
+```
+
+其他任务可复制 [通用分支示例](docs/architecture/technical-flow.example.json)，修改步骤与关系后，通过 `--config` 和 `--output` 生成自己的图；无需修改绘图代码。流程内容由配置提供，生成器负责校验、布局与导出。
+
 ## 快速使用
 
 已安装的本机项目在 `E:\Workspace\video_agent`。在 PowerShell 运行：

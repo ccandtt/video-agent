@@ -174,3 +174,14 @@
 - 上传完成：GitHub 命令行身份验证为 ccandtt，创建 ccandtt/video-agent 私有仓库并推送 main。GitHub API 返回 private=true、visibility=private、default_branch=main；远端与本地全部 57 个文件路径及 blob SHA 一致，main 提交一致，README 内容一致。
 - 远端 data 目录只包含说明和两个 .gitkeep，占位以外的原视频与笔记均未上传；web/.env.local、本机部署配置、模型、输出与缓存不在远端树中。原 web Git 历史备份保存在项目 .cache/repository-backups。
 - 上传检查记录：本机 .cache/github-upload.json；仓库 https://github.com/ccandtt/video-agent 。本次只建立 GitHub 私有源码版本管理，未发布新网站或迁移用户笔记。
+
+## 2026-10-20 · 通用技术流程图生成
+
+- 新增 video_agent.technical_flow：JSON 步骤配置 → 关系校验与拓扑分层 → PNG、原生文字／图形 SVG 和哈希验证记录；无新增依赖。
+- 项目默认配置按实际本地工具调用顺序展示九步链路，逐节点包含输入、关键技术和产物；已有笔记复用通过跳过路径单独标记。OCR 与 ASR 顺序执行，生成笔记前进行完整性及 SHA256 检查后再补采样。
+- 默认命令实际运行成功：9 个节点、9 条关系、9 层，PNG 2868 × 5108；SVG 中文与文件名标签可读，已核看整张图和缓存复用分支。
+- 同一模块读取另一份 CSV 清洗／质量检查配置成功：4 节点、4 关系、3 层，PNG 1588 × 913；核看分支与汇合、输入／技术／产物列和文件名折行，证明生成器不依赖 Video Agent 的固定步骤。
+- 专项 16 项通过，覆盖重复／缺失／自连／循环／断开关系拒绝、必需字段、项目路径约束、可读 PNG 与可编辑 SVG、XML 转义、非拓扑声明顺序、长文本、坏配置不覆盖旧图、配置大小限制及默认配置完整性。
+- 完整回归：85 passed、43 subtests passed。新功能未改变本地笔记网页、视频处理算法或公网部署；没有新增视频内容自动流程图类别。
+- 默认配置与 PNG／SVG 已加入 README；使用方法、配置字段、支持范围和通用例子见 docs/TECHNICAL_FLOW.md。配置内容需随代码维护，当前不自动理解源码或视频。
+- 纯源码副本复验：79 passed、6 skipped、43 subtests passed；缺少视频或识别缓存的真实样例按预期跳过。默认与分支示例 CLI 均实际生成成功，PNG／SVG 哈希与原环境一致，不依赖本机视频、运行密钥或临时配置。

@@ -1,0 +1,186 @@
+{
+  "title": "Video Agent｜从视频链接生成图文笔记",
+  "subtitle": "技术流程图 · 本地工具的主处理链路与中间产物",
+  "nodes": [
+    {
+      "id": "request",
+      "title": "链接校验与任务创建",
+      "inputs": [
+        "用户粘贴的 B 站视频链接"
+      ],
+      "technology": [
+        "URL 解析与 BV 号校验",
+        "LocalJobs 持久化队列"
+      ],
+      "outputs": [
+        "规范化链接 · 视频 ID",
+        "任务记录 / 已有结果复用"
+      ]
+    },
+    {
+      "id": "download",
+      "title": "原视频下载与检查",
+      "inputs": [
+        "规范化视频链接"
+      ],
+      "technology": [
+        "yt-dlp · FFmpeg 合并",
+        "OpenCV 时长检查"
+      ],
+      "outputs": [
+        "video.mp4",
+        "video.info.json · 视频参数"
+      ]
+    },
+    {
+      "id": "ocr",
+      "title": "基础画面采样与 OCR",
+      "inputs": [
+        "原视频 · 采样间隔"
+      ],
+      "technology": [
+        "OpenCV 取帧",
+        "RapidOCR / ONNX Runtime"
+      ],
+      "outputs": [
+        "frames/*.jpg",
+        "ocr.json（基础文字与时间）"
+      ]
+    },
+    {
+      "id": "asr",
+      "title": "音轨提取与语音识别",
+      "inputs": [
+        "原视频音轨"
+      ],
+      "technology": [
+        "FFmpeg 单声道 16 kHz",
+        "faster-whisper small / CPU int8"
+      ],
+      "outputs": [
+        "audio.wav",
+        "transcript.json（文本与时间）"
+      ]
+    },
+    {
+      "id": "refine",
+      "title": "缓存校验与画面补采样",
+      "inputs": [
+        "原视频 · OCR / ASR 缓存"
+      ],
+      "technology": [
+        "SHA256 / complete 校验",
+        "转场及语音中点密集采样"
+      ],
+      "outputs": [
+        "补采样截图",
+        "扩充后的 ocr.json"
+      ]
+    },
+    {
+      "id": "extract",
+      "title": "店铺分段与事实抽取",
+      "inputs": [
+        "OCR 文字 · ASR 文本 · 时间"
+      ],
+      "technology": [
+        "时序规则 · 名称文字检索",
+        "名称规范化与来源保留"
+      ],
+      "outputs": [
+        "店铺分段与名称依据",
+        "菜品 / 价格 / 地点线索 / 评价"
+      ]
+    },
+    {
+      "id": "menu",
+      "title": "菜单与视觉证据关联",
+      "inputs": [
+        "店铺事实 · 带时间的源画面"
+      ],
+      "technology": [
+        "文字匹配 · 时序关系",
+        "清晰度评分 · 保守名称归并"
+      ],
+      "outputs": [
+        "menu 条目与菜品图片",
+        "原文 / 时间戳 / 名称修订依据"
+      ]
+    },
+    {
+      "id": "render",
+      "title": "结果验证与图文笔记渲染",
+      "inputs": [
+        "店铺 · 菜单 · 截图证据"
+      ],
+      "technology": [
+        "图片 / 路径 / 时间范围检查",
+        "Python HTML / Markdown 渲染"
+      ],
+      "outputs": [
+        "notes.json · notes.html · notes.md",
+        "validation.json"
+      ]
+    },
+    {
+      "id": "return",
+      "title": "索引更新与阅读入口",
+      "inputs": [
+        "笔记文件 · 来源元数据"
+      ],
+      "technology": [
+        "library.py · 本地 HTTP 服务",
+        "图片查看 · 视频 Range 回看"
+      ],
+      "outputs": [
+        "data/index.html · library.json",
+        "笔记链接 / 截图 / 时间戳阅读"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "request",
+      "to": "download"
+    },
+    {
+      "from": "download",
+      "to": "ocr"
+    },
+    {
+      "from": "ocr",
+      "to": "asr"
+    },
+    {
+      "from": "asr",
+      "to": "refine"
+    },
+    {
+      "from": "refine",
+      "to": "extract"
+    },
+    {
+      "from": "extract",
+      "to": "menu"
+    },
+    {
+      "from": "menu",
+      "to": "render"
+    },
+    {
+      "from": "render",
+      "to": "return"
+    },
+    {
+      "from": "request",
+      "to": "return",
+      "label": "命中已有笔记\n直接返回阅读入口"
+    }
+  ],
+  "notes": [
+    "主链路对应本地工具提交链接；当前自动笔记场景为中文美食探店。",
+    "已有原视频及识别缓存可复用；OCR、ASR 当前顺序执行，生成笔记前校验缓存完整性与输入指纹。",
+    "CLI 处理本地视频时省略链接任务编排；启动本地工具或重建笔记库时更新索引。",
+    "公网入口复用识别和生成步骤，由本机 cloud_worker 经 Sites API 将笔记、图片及回看视频上传 R2。"
+  ]
+}

@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1434" height="2554" viewBox="0 0 1434 2554" role="img" aria-labelledby="title">
+<title id="title">Video Agent｜从视频链接生成图文笔记</title>
+<rect width="1434" height="2554" fill="#f6f8fc"/>
+<text x="72" y="48" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="34" font-weight="700" text-anchor="start" dominant-baseline="central">Video Agent｜从视频链接生成图文笔记</text>
+<text x="72" y="101" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="20" font-weight="400" text-anchor="start" dominant-baseline="central">技术流程图 · 本地工具的主处理链路与中间产物</text>
+<polyline points="802.0,340 802.0,372.0 802.0,372.0 802.0,404" fill="none" stroke="#3768ab" stroke-width="2.5" stroke-linejoin="round"/>
+<polygon points="802.00,404.00 807.00,394.00 797.00,394.00" fill="#3768ab"/>
+<polyline points="802.0,591 802.0,623.0 802.0,623.0 802.0,655" fill="none" stroke="#3768ab" stroke-width="2.5" stroke-linejoin="round"/>
+<polygon points="802.00,655.00 807.00,645.00 797.00,645.00" fill="#3768ab"/>
+<polyline points="802.0,842 802.0,874.0 802.0,874.0 802.0,906" fill="none" stroke="#3768ab" stroke-width="2.5" stroke-linejoin="round"/>
+<polygon points="802.00,906.00 807.00,896.00 797.00,896.00" fill="#3768ab"/>
+<polyline points="802.0,1093 802.0,1125.0 802.0,1125.0 802.0,1157" fill="none" stroke="#3768ab" stroke-width="2.5" stroke-linejoin="round"/>
+<polygon points="802.00,1157.00 807.00,1147.00 797.00,1147.00" fill="#3768ab"/>
+<polyline points="802.0,1344 802.0,1376.0 802.0,1376.0 802.0,1408" fill="none" stroke="#3768ab" stroke-width="2.5" stroke-linejoin="round"/>
+<polygon points="802.00,1408.00 807.00,1398.00 797.00,1398.00" fill="#3768ab"/>
+<polyline points="802.0,1595 802.0,1627.0 802.0,1627.0 802.0,1659" fill="none" stroke="#3768ab" stroke-width="2.5" stroke-linejoin="round"/>
+<polygon points="802.00,1659.00 807.00,1649.00 797.00,1649.00" fill="#3768ab"/>
+<polyline points="802.0,1846 802.0,1878.0 802.0,1878.0 802.0,1910" fill="none" stroke="#3768ab" stroke-width="2.5" stroke-linejoin="round"/>
+<polygon points="802.00,1910.00 807.00,1900.00 797.00,1900.00" fill="#3768ab"/>
+<polyline points="802.0,2097 802.0,2129.0 802.0,2129.0 802.0,2161" fill="none" stroke="#3768ab" stroke-width="2.5" stroke-linejoin="round"/>
+<polygon points="802.00,2161.00 807.00,2151.00 797.00,2151.00" fill="#3768ab"/>
+<polyline points="242.0,246.5 72,246.5 72,2254.5 242.0,2254.5" fill="none" stroke="#3768ab" stroke-width="2.5" stroke-linejoin="round"/>
+<polygon points="242.00,2254.50 232.00,2249.50 232.00,2259.50" fill="#3768ab"/>
+<rect x="8.0" y="1221.5" width="156.0" height="58" rx="4" fill="#f6f8fc" stroke="#f6f8fc"/>
+<text x="86.0" y="1239.0" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="400" text-anchor="middle" dominant-baseline="central">命中已有笔记</text>
+<text x="86.0" y="1262.0" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="400" text-anchor="middle" dominant-baseline="central">直接返回阅读入口</text>
+<rect x="242.0" y="153" width="1120" height="187" rx="14" fill="#fff" stroke="#d4dfeb"/>
+<rect x="260.0" y="171" width="40" height="35" rx="8" fill="#eaf0fa" stroke="#eaf0fa"/>
+<text x="280.0" y="188" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="central">01</text>
+<text x="318.0" y="185" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="25" font-weight="700" text-anchor="start" dominant-baseline="central">链接校验与任务创建</text>
+<text x="266.0" y="236" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">输入</text>
+<text x="266.0" y="270" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">用户粘贴的 B 站视频链接</text>
+<text x="618.0" y="236" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">关键技术</text>
+<text x="618.0" y="270" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">URL 解析与 BV 号校验</text>
+<text x="618.0" y="297" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">LocalJobs 持久化队列</text>
+<text x="970.0" y="236" fill="#25877e" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">产物</text>
+<text x="970.0" y="270" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">规范化链接 · 视频 ID</text>
+<text x="970.0" y="297" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">任务记录 / 已有结果复用</text>
+<rect x="242.0" y="404" width="1120" height="187" rx="14" fill="#fff" stroke="#d4dfeb"/>
+<rect x="260.0" y="422" width="40" height="35" rx="8" fill="#eaf0fa" stroke="#eaf0fa"/>
+<text x="280.0" y="439" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="central">02</text>
+<text x="318.0" y="436" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="25" font-weight="700" text-anchor="start" dominant-baseline="central">原视频下载与检查</text>
+<text x="266.0" y="487" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">输入</text>
+<text x="266.0" y="521" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">规范化视频链接</text>
+<text x="618.0" y="487" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">关键技术</text>
+<text x="618.0" y="521" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">yt-dlp · FFmpeg 合并</text>
+<text x="618.0" y="548" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">OpenCV 时长检查</text>
+<text x="970.0" y="487" fill="#25877e" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">产物</text>
+<text x="970.0" y="521" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">video.mp4</text>
+<text x="970.0" y="548" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">video.info.json · 视频参数</text>
+<rect x="242.0" y="655" width="1120" height="187" rx="14" fill="#fff" stroke="#d4dfeb"/>
+<rect x="260.0" y="673" width="40" height="35" rx="8" fill="#eaf0fa" stroke="#eaf0fa"/>
+<text x="280.0" y="690" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="central">03</text>
+<text x="318.0" y="687" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="25" font-weight="700" text-anchor="start" dominant-baseline="central">基础画面采样与 OCR</text>
+<text x="266.0" y="738" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">输入</text>
+<text x="266.0" y="772" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">原视频 · 采样间隔</text>
+<text x="618.0" y="738" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">关键技术</text>
+<text x="618.0" y="772" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">OpenCV 取帧</text>
+<text x="618.0" y="799" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">RapidOCR / ONNX Runtime</text>
+<text x="970.0" y="738" fill="#25877e" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">产物</text>
+<text x="970.0" y="772" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">frames/*.jpg</text>
+<text x="970.0" y="799" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">ocr.json（基础文字与时间）</text>
+<rect x="242.0" y="906" width="1120" height="187" rx="14" fill="#fff" stroke="#d4dfeb"/>
+<rect x="260.0" y="924" width="40" height="35" rx="8" fill="#eaf0fa" stroke="#eaf0fa"/>
+<text x="280.0" y="941" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="central">04</text>
+<text x="318.0" y="938" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="25" font-weight="700" text-anchor="start" dominant-baseline="central">音轨提取与语音识别</text>
+<text x="266.0" y="989" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">输入</text>
+<text x="266.0" y="1023" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">原视频音轨</text>
+<text x="618.0" y="989" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">关键技术</text>
+<text x="618.0" y="1023" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">FFmpeg 单声道 16 kHz</text>
+<text x="618.0" y="1050" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">faster-whisper small / CPU int8</text>
+<text x="970.0" y="989" fill="#25877e" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">产物</text>
+<text x="970.0" y="1023" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">audio.wav</text>
+<text x="970.0" y="1050" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">transcript.json（文本与时间）</text>
+<rect x="242.0" y="1157" width="1120" height="187" rx="14" fill="#fff" stroke="#d4dfeb"/>
+<rect x="260.0" y="1175" width="40" height="35" rx="8" fill="#eaf0fa" stroke="#eaf0fa"/>
+<text x="280.0" y="1192" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="central">05</text>
+<text x="318.0" y="1189" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="25" font-weight="700" text-anchor="start" dominant-baseline="central">缓存校验与画面补采样</text>
+<text x="266.0" y="1240" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">输入</text>
+<text x="266.0" y="1274" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">原视频 · OCR / ASR 缓存</text>
+<text x="618.0" y="1240" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">关键技术</text>
+<text x="618.0" y="1274" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">SHA256 / complete 校验</text>
+<text x="618.0" y="1301" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">转场及语音中点密集采样</text>
+<text x="970.0" y="1240" fill="#25877e" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">产物</text>
+<text x="970.0" y="1274" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">补采样截图</text>
+<text x="970.0" y="1301" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">扩充后的 ocr.json</text>
+<rect x="242.0" y="1408" width="1120" height="187" rx="14" fill="#fff" stroke="#d4dfeb"/>
+<rect x="260.0" y="1426" width="40" height="35" rx="8" fill="#eaf0fa" stroke="#eaf0fa"/>
+<text x="280.0" y="1443" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="central">06</text>
+<text x="318.0" y="1440" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="25" font-weight="700" text-anchor="start" dominant-baseline="central">店铺分段与事实抽取</text>
+<text x="266.0" y="1491" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">输入</text>
+<text x="266.0" y="1525" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">OCR 文字 · ASR 文本 · 时间</text>
+<text x="618.0" y="1491" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">关键技术</text>
+<text x="618.0" y="1525" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">时序规则 · 名称文字检索</text>
+<text x="618.0" y="1552" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">名称规范化与来源保留</text>
+<text x="970.0" y="1491" fill="#25877e" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">产物</text>
+<text x="970.0" y="1525" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">店铺分段与名称依据</text>
+<text x="970.0" y="1552" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">菜品 / 价格 / 地点线索 / 评价</text>
+<rect x="242.0" y="1659" width="1120" height="187" rx="14" fill="#fff" stroke="#d4dfeb"/>
+<rect x="260.0" y="1677" width="40" height="35" rx="8" fill="#eaf0fa" stroke="#eaf0fa"/>
+<text x="280.0" y="1694" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="central">07</text>
+<text x="318.0" y="1691" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="25" font-weight="700" text-anchor="start" dominant-baseline="central">菜单与视觉证据关联</text>
+<text x="266.0" y="1742" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">输入</text>
+<text x="266.0" y="1776" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">店铺事实 · 带时间的源画面</text>
+<text x="618.0" y="1742" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">关键技术</text>
+<text x="618.0" y="1776" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">文字匹配 · 时序关系</text>
+<text x="618.0" y="1803" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">清晰度评分 · 保守名称归并</text>
+<text x="970.0" y="1742" fill="#25877e" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">产物</text>
+<text x="970.0" y="1776" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">menu 条目与菜品图片</text>
+<text x="970.0" y="1803" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">原文 / 时间戳 / 名称修订依据</text>
+<rect x="242.0" y="1910" width="1120" height="187" rx="14" fill="#fff" stroke="#d4dfeb"/>
+<rect x="260.0" y="1928" width="40" height="35" rx="8" fill="#eaf0fa" stroke="#eaf0fa"/>
+<text x="280.0" y="1945" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="central">08</text>
+<text x="318.0" y="1942" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="25" font-weight="700" text-anchor="start" dominant-baseline="central">结果验证与图文笔记渲染</text>
+<text x="266.0" y="1993" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">输入</text>
+<text x="266.0" y="2027" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">店铺 · 菜单 · 截图证据</text>
+<text x="618.0" y="1993" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">关键技术</text>
+<text x="618.0" y="2027" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">图片 / 路径 / 时间范围检查</text>
+<text x="618.0" y="2054" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">Python HTML / Markdown 渲染</text>
+<text x="970.0" y="1993" fill="#25877e" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">产物</text>
+<text x="970.0" y="2027" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">notes.json · notes.html · notes.md</text>
+<text x="970.0" y="2054" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">validation.json</text>
+<rect x="242.0" y="2161" width="1120" height="187" rx="14" fill="#fff" stroke="#d4dfeb"/>
+<rect x="260.0" y="2179" width="40" height="35" rx="8" fill="#eaf0fa" stroke="#eaf0fa"/>
+<text x="280.0" y="2196" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="central">09</text>
+<text x="318.0" y="2193" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="25" font-weight="700" text-anchor="start" dominant-baseline="central">索引更新与阅读入口</text>
+<text x="266.0" y="2244" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">输入</text>
+<text x="266.0" y="2278" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">笔记文件 · 来源元数据</text>
+<text x="618.0" y="2244" fill="#3768ab" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">关键技术</text>
+<text x="618.0" y="2278" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">library.py · 本地 HTTP 服务</text>
+<text x="618.0" y="2305" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">图片查看 · 视频 Range 回看</text>
+<text x="970.0" y="2244" fill="#25877e" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="17" font-weight="700" text-anchor="start" dominant-baseline="central">产物</text>
+<text x="970.0" y="2278" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">data/index.html · library.json</text>
+<text x="970.0" y="2305" fill="#183045" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="19" font-weight="400" text-anchor="start" dominant-baseline="central">笔记链接 / 截图 / 时间戳阅读</text>
+<text x="92" y="2408" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="400" text-anchor="start" dominant-baseline="central">主链路对应本地工具提交链接；当前自动笔记场景为中文美食探店。</text>
+<text x="92" y="2435" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="400" text-anchor="start" dominant-baseline="central">已有原视频及识别缓存可复用；OCR、ASR 当前顺序执行，生成笔记前校验缓存完整性与输入指纹。</text>
+<text x="92" y="2462" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="400" text-anchor="start" dominant-baseline="central">CLI 处理本地视频时省略链接任务编排；启动本地工具或重建笔记库时更新索引。</text>
+<text x="92" y="2489" fill="#617487" font-family="Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="18" font-weight="400" text-anchor="start" dominant-baseline="central">公网入口复用识别和生成步骤，由本机 cloud_worker 经 Sites API 将笔记、图片及回看视频上传 R2。</text>
+</svg>

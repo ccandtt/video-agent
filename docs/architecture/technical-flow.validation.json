@@ -1,0 +1,14 @@
+{
+  "nodes": 9,
+  "edges": 9,
+  "levels": 9,
+  "png_dimensions": [
+    2868,
+    5108
+  ],
+  "text_labels": 98,
+  "png_sha256": "d5426f6f149cf45b04a4224998b0eac0e6df45707817fb8ad7bcf742bbec1bea",
+  "svg_sha256": "14c9d2d4d7ce78a87776220e55bdfce8d9c70b7be94edbfb66a50ebce53a4e87",
+  "spec_sha256": "38e6450fa9aa7b7ba481ce9a7bcdcb9298b483d43c6cd8c3d412258547edbe07",
+  "layout": "topological layers; inputs / technology / artifacts per step"
+}
