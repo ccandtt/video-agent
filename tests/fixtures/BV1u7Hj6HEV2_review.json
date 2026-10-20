@@ -1,0 +1,16 @@
+{
+  "video_id": "BV1u7Hj6HEV2",
+  "review_basis": "源视频讲解与 OCR 画面人工独立核对；仅用于验收，处理逻辑不得读取。",
+  "expected_stops": 9,
+  "descriptive_first_food": "包子",
+  "confirmed_video_labels": [
+    "益发顺总店",
+    "洪湖里马记糕点",
+    "寿司林",
+    "美肴",
+    "铁真",
+    "源素斋老味卷圈",
+    "饶师傅"
+  ],
+  "descriptive_drinks": "饮品点位"
+}

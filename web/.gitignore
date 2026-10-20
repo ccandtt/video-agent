@@ -1,0 +1,7 @@
+dist/
+site.tar.gz
+
+.env.local
+.cache/
+
+site-preview.png

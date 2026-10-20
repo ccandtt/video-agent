@@ -1,0 +1,42 @@
+{
+  "description": "人工核对视频店铺介绍画面的验收数据；仅测试使用，流水线不会读取。",
+  "source": "BV1cHen6EEen",
+  "names": [
+    "Peterpan",
+    "Tacobar",
+    "印厨",
+    "KEMPI DELI",
+    "ourBakery",
+    "新疆驻京办",
+    "四川驻京办",
+    "花盐街",
+    "德南面包房",
+    "澜玖拾柒",
+    "贵州烙锅"
+  ],
+  "start_times": [
+    20.76,
+    68.4,
+    109.4,
+    168.92,
+    184.4,
+    238.72,
+    288.84,
+    327.44,
+    348.76,
+    380.8,
+    406.76
+  ],
+  "time_tolerance": 2.0,
+  "outro_before": 435,
+  "aliases": {
+    "Tacobar": [
+      "Tacobar",
+      "THE TACO BAR"
+    ],
+    "KEMPI DELI": [
+      "KEMPI DELI",
+      "KEMPIDELI"
+    ]
+  }
+}

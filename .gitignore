@@ -1,0 +1,41 @@
+# Local runtime data
+/.venv/
+/.cache/
+/.pytest_cache/
+/models/
+/output/
+/tmp/
+/data/*
+!/data/README.md
+!/data/raw/
+!/data/processed/
+/data/raw/*
+!/data/raw/.gitkeep
+/data/processed/*
+!/data/processed/.gitkeep
+
+# Build caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+node_modules/
+dist/
+build/
+.coverage
+htmlcov/
+
+# Credentials and machine state
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.log
+*.pid
+.DS_Store
+Thumbs.db
+/web/.openai/
+/web/site.tar.gz
+/web/site-preview.png
