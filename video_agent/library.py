@@ -1,6 +1,5 @@
 """Discover saved notes and build the local tool's single homepage."""
 from __future__ import annotations
-import html
 import json
 from pathlib import Path
 from urllib.parse import quote
@@ -48,7 +47,7 @@ def build(root=ROOT):
     # Metadata may contain HTML-like text; it must never terminate a script tag.
     bootstrap = json.dumps(data, ensure_ascii=False).replace("<", "\\u003c").replace(">", "\\u003e")
     target = root / "data/index.html"
-    target.write_text(template.replace("__LIBRARY_DATA__", bootstrap).replace("__PROJECT_PATH__", html.escape(str(root))), encoding="utf-8")
+    target.write_text(template.replace("__LIBRARY_DATA__", bootstrap), encoding="utf-8")
     (root / "data/library.json").write_text(json.dumps(data, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
     print(json.dumps({"homepage":str(target),"videos":len(entries),"ready":data["ready"]},ensure_ascii=False))
     return entries

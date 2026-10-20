@@ -62,7 +62,7 @@ def test_library_can_bootstrap_empty_install_directory(project):
     assert build(project)==[]
     page=(project/"data/index.html").read_text(encoding="utf-8")
     assert "__PROJECT_PATH__" not in page
-    assert str(project) in page
+    assert str(project) not in page
     assert json.loads((project/"data/library.json").read_text(encoding="utf-8"))["ready"]==0
 
 def test_invalid_url_does_not_start_service(monkeypatch):
