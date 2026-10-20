@@ -9,6 +9,25 @@ ROOT = Path(__file__).resolve().parents[1]
 def read(path):
     return json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
 
+def restaurant_card(notes):
+    """Summarize existing extracted content without guessing a city or new facts."""
+    shops = notes.get("shops") or []
+    if not shops:
+        return {}, ""
+    dishes = []
+    for shop in shops:
+        # A representative dish per stop keeps a multi-stop overview varied.
+        for dish in shop.get("dishes", []):
+            if isinstance(dish, str) and dish.strip() and dish not in dishes:
+                dishes.append(dish)
+                break
+        if len(dishes) == 4:
+            break
+    description = f"走访 {len(shops)} 处餐饮点位"
+    description += "，介绍" + "、".join(dishes) + "等菜品。" if dishes else "，整理店铺与探店体验。"
+    return {"subtype": "美食探店攻略"}, description
+
+
 def scan(root=ROOT):
     root = Path(root).resolve()
     entries = []
@@ -20,6 +39,7 @@ def scan(root=ROOT):
         classification = read(folder / "classification.json")
         summary = read(folder / "summary.json")
         notes = read(folder / "notes.json")
+        fallback, overview = restaurant_card(notes)
         pdfs = sorted(folder.glob("*.pdf"))
         target = folder / "notes.html" if (folder / "notes.html").is_file() else pdfs[0] if pdfs else None
         category = classification.get("primary_scene") or summary.get("category") or (
@@ -28,11 +48,11 @@ def scan(root=ROOT):
         url = lambda path: "/" + quote(path.relative_to(root).as_posix(), safe="/")
         entries.append({
             "video_id":raw.name, "title":info.get("title", raw.name), "category":category,
-            "subtype":classification.get("subtype") or summary.get("subtype", ""),
+            "subtype":classification.get("subtype") or summary.get("subtype") or fallback.get("subtype", ""),
             "duration":float(info.get("duration") or 0), "ready":bool(target),
             "note_url":url(target) if target else "",
             "source_url":"https://www.bilibili.com/video/" + raw.name + "/",
-            "description":classification.get("content_brief") or summary.get("overview", ""),
+            "description":classification.get("content_brief") or summary.get("overview") or overview,
             "markdown_url":url(folder / "notes.md") if (folder / "notes.md").is_file() else "",
             "updated_at":target.stat().st_mtime if target else raw.stat().st_mtime
         })
