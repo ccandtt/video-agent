@@ -145,7 +145,7 @@ class PreviewHandler(BaseHTTPRequestHandler):
         self._json(data, status)
 
     def _api(self, head=False):
-        from .library import scan
+        from .library import library_data, generation_categories
         from .local_jobs import JobError
         path = urlsplit(self.path).path
         manager = getattr(self.server, "local_jobs", None)
@@ -155,10 +155,9 @@ class PreviewHandler(BaseHTTPRequestHandler):
         if self.command in ("GET","HEAD"):
             if path == "/api/health":
                 from .runtime import project_id
-                self._json({"app":"video-agent","mode":"local","online":True,"version":2,"project_id":project_id(manager.root),"generation_categories":["restaurant"]},head=head)
+                self._json({"app":"video-agent","mode":"local","online":True,"version":2,"project_id":project_id(manager.root),"generation_categories":generation_categories()},head=head)
             elif path == "/api/library":
-                entries = scan(manager.root)
-                self._json({"videos":entries,"ready":sum(e["ready"] for e in entries)},head=head)
+                self._json(library_data(manager.root),head=head)
             elif path == "/api/jobs":
                 self._json({"jobs":manager.list()},head=head)
             else:

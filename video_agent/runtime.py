@@ -198,7 +198,8 @@ def _setup(offline=False,port=8765,open_browser=True,root=ROOT):
 def summarize(url,category="restaurant",wait=True,timeout=3600,port=8765,root=ROOT):
     from .local_jobs import video_url
     url=video_url(url)
-    if category!="restaurant":raise ValueError("当前自动生成仅支持 restaurant（中文探店）")
+    from .library import generation_categories
+    if category not in generation_categories():raise ValueError("当前自动生成仅支持 restaurant（美食探店）")
     if timeout<=0:raise ValueError("timeout 必须大于零")
     service=start(port,False,root)
     response=request(service["port"],"/api/jobs","POST",{"url":url,"category":category})

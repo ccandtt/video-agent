@@ -5,6 +5,15 @@ from pathlib import Path
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
+NOTE_TYPES = [
+    {"id": "lecture", "label": "知识讲解", "auto_generate": False},
+    {"id": "product", "label": "商品推荐与评测", "auto_generate": False},
+    {"id": "restaurant", "label": "美食探店", "auto_generate": True},
+]
+
+
+def generation_categories():
+    return [item["id"] for item in NOTE_TYPES if item["auto_generate"]]
 
 def read(path):
     return json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
@@ -58,11 +67,16 @@ def scan(root=ROOT):
         })
     return sorted(entries, key=lambda item:item["updated_at"], reverse=True)
 
+def library_data(root=ROOT):
+    entries = scan(root)
+    return {"videos": entries, "ready": sum(item["ready"] for item in entries), "categories": NOTE_TYPES}
+
+
 def build(root=ROOT):
     root = Path(root).resolve()
     (root / "data").mkdir(parents=True, exist_ok=True)
-    entries = scan(root)
-    data = {"videos":entries, "ready":sum(item["ready"] for item in entries)}
+    data = library_data(root)
+    entries = data["videos"]
     template = (Path(__file__).parent / "templates/local-tool.html").read_text(encoding="utf-8")
     # Metadata may contain HTML-like text; it must never terminate a script tag.
     bootstrap = json.dumps(data, ensure_ascii=False).replace("<", "\\u003c").replace(">", "\\u003e")

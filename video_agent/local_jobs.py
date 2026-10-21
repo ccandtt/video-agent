@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlsplit
 import re
-from .library import ROOT, scan
+from .library import ROOT, scan, generation_categories
 
 class JobError(ValueError):
     def __init__(self, message, status=400):
@@ -71,8 +71,8 @@ class LocalJobs:
 
     def submit(self, value, category):
         url = video_url(value)
-        if category != "restaurant":
-            raise JobError("当前自动生成仅支持探店攻略；其他场景的已保存笔记可在下方浏览")
+        if category not in generation_categories():
+            raise JobError("当前自动生成仅支持美食探店；其他类型可浏览已保存笔记")
         bv = url.rstrip("/").rsplit("/",1)[1]
         with self.lock:
             existing = next((entry for entry in scan(self.root) if entry["video_id"] == bv and entry["ready"]), None)
